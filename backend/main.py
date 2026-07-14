@@ -119,13 +119,16 @@ def get_type_breakdown():
 
 @app.get("/api/graph/metadata")
 def get_graph_data():
-    if not graph_metadata and os.path.exists("models/graph_metadata.json"):
+    if os.path.exists("models/graph_metadata.json"):
         with open("models/graph_metadata.json", "r") as f:
             return json.load(f)
     return graph_metadata
 
 @app.get("/api/ml/metrics")
 def get_ml_metrics():
+    if os.path.exists("models/model_metrics.json"):
+        with open("models/model_metrics.json", "r") as f:
+            return json.load(f)
     return model_metrics
 
 @app.post("/api/simulate/transaction", response_model=SimulationResponse)
