@@ -12,7 +12,7 @@
 
 An end-to-end, institutional-grade **Financial Crime Detection, Analytics Engineering, Graph ML, and Explainable AI** platform built around the Kaggle **PaySim / Online Payments Fraud Detection Dataset**.
 
-This repository bridges the gap between **Data Analytics (`SQL`, `dbt`, `DuckDB`, `Metabase BI`)** and **Full-Stack AI Engineering (`XGBoost`, `NetworkX Graph Analytics`, `SHAP Explainability`, `FastAPI`, `Next-Gen Web UI`)**.
+This repository bridges the gap between **Data Analytics (`SQL`, `dbt`, `DuckDB`, `Metabase BI`)** and **Full-Stack AI Engineering (`XGBoost`, `NetworkX Graph Analytics`, `SHAP Explainability`, `FastAPI`)**.
 
 ---
 
