@@ -1,3 +1,4 @@
+# FinShield-AI dbt Configuration & Schema v1.0.0
 name: 'dbt_finshield'
 version: '1.0.0'
 config-version: 2

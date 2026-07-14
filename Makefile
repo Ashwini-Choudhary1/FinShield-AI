@@ -1,3 +1,4 @@
+# FinShield-AI Command Center & Pipeline Automation v1.0.0
 .PHONY: help setup ingest dbt ml app
 
 PYTHON ?= ./venv/bin/python

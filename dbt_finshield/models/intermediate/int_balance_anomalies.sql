@@ -1,3 +1,4 @@
+-- FinShield-AI Analytics Engineering Model v1.0.0
 with tx as (
     select * from {{ ref('stg_transactions') }}
 ),

@@ -1,3 +1,4 @@
+# FinShield-AI API Models & Pydantic Schemas v1.0.0
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 

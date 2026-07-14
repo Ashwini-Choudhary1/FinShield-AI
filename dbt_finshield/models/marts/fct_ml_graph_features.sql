@@ -1,3 +1,4 @@
+-- FinShield-AI Analytics Engineering Model v1.0.0
 with anomalies as (
     select * from {{ ref('int_balance_anomalies') }}
 ),

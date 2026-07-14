@@ -1,3 +1,4 @@
+# FinShield-AI Data Ingestion & Synthetic Generation Pipeline v1.0.0
 import os
 import duckdb
 import pandas as pd

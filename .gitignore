@@ -1,3 +1,4 @@
+# FinShield-AI Production Gitignore Rules
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,3 +1,4 @@
+-- FinShield-AI Analytics Engineering Model v1.0.0
 with raw as (
     select * from {{ source('main', 'raw_transactions') }}
 )
