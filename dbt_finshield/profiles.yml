@@ -1,0 +1,8 @@
+finshield_duckdb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../finshield.duckdb
+      schema: main
+      threads: 4

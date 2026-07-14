@@ -1,0 +1,231 @@
+{
+  "total_nodes": 99966,
+  "total_edges": 50000,
+  "money_mule_rings_detected": 50,
+  "top_out_degree_hubs": [
+    [
+      "C6353283911",
+      1
+    ],
+    [
+      "C4089142853",
+      1
+    ],
+    [
+      "C5107681478",
+      1
+    ],
+    [
+      "C4304366285",
+      1
+    ],
+    [
+      "C4642922247",
+      1
+    ]
+  ],
+  "top_in_degree_hubs": [
+    [
+      "C2396306009",
+      2
+    ],
+    [
+      "C8829812554",
+      1
+    ],
+    [
+      "C7862509334",
+      1
+    ],
+    [
+      "M3881718507",
+      1
+    ],
+    [
+      "C1755260240",
+      1
+    ]
+  ],
+  "sample_mule_rings": [
+    {
+      "transfer_step": 3,
+      "cashout_step": 3,
+      "victim": "C_VICTIM_437402",
+      "mule": "C_MULE_143654",
+      "cashout_dest": "C_SHADOW_435633",
+      "transfer_amount": 142368.18,
+      "cashout_amount": 142368.18
+    },
+    {
+      "transfer_step": 6,
+      "cashout_step": 7,
+      "victim": "C_VICTIM_321976",
+      "mule": "C_MULE_970000",
+      "cashout_dest": "C_SHADOW_753405",
+      "transfer_amount": 53075.19,
+      "cashout_amount": 53075.19
+    },
+    {
+      "transfer_step": 8,
+      "cashout_step": 9,
+      "victim": "C_VICTIM_255884",
+      "mule": "C_MULE_772139",
+      "cashout_dest": "C_SHADOW_355577",
+      "transfer_amount": 298469.1,
+      "cashout_amount": 298469.1
+    },
+    {
+      "transfer_step": 9,
+      "cashout_step": 9,
+      "victim": "C_VICTIM_952535",
+      "mule": "C_MULE_721168",
+      "cashout_dest": "C_SHADOW_356433",
+      "transfer_amount": 448634.16,
+      "cashout_amount": 448634.16
+    },
+    {
+      "transfer_step": 11,
+      "cashout_step": 12,
+      "victim": "C_VICTIM_297727",
+      "mule": "C_MULE_138563",
+      "cashout_dest": "C_SHADOW_448437",
+      "transfer_amount": 186596.04,
+      "cashout_amount": 186596.04
+    },
+    {
+      "transfer_step": 12,
+      "cashout_step": 13,
+      "victim": "C_VICTIM_891978",
+      "mule": "C_MULE_222087",
+      "cashout_dest": "C_SHADOW_263516",
+      "transfer_amount": 218866.79,
+      "cashout_amount": 218866.79
+    },
+    {
+      "transfer_step": 13,
+      "cashout_step": 13,
+      "victim": "C_VICTIM_212349",
+      "mule": "C_MULE_205646",
+      "cashout_dest": "C_SHADOW_894331",
+      "transfer_amount": 387724.34,
+      "cashout_amount": 387724.34
+    },
+    {
+      "transfer_step": 14,
+      "cashout_step": 15,
+      "victim": "C_VICTIM_603016",
+      "mule": "C_MULE_985308",
+      "cashout_dest": "C_SHADOW_856977",
+      "transfer_amount": 499170.47,
+      "cashout_amount": 499170.47
+    },
+    {
+      "transfer_step": 15,
+      "cashout_step": 16,
+      "victim": "C_VICTIM_695754",
+      "mule": "C_MULE_902921",
+      "cashout_dest": "C_SHADOW_755955",
+      "transfer_amount": 183016.68,
+      "cashout_amount": 183016.68
+    },
+    {
+      "transfer_step": 16,
+      "cashout_step": 16,
+      "victim": "C_VICTIM_909587",
+      "mule": "C_MULE_586841",
+      "cashout_dest": "C_SHADOW_299812",
+      "transfer_amount": 264197.92,
+      "cashout_amount": 264197.92
+    },
+    {
+      "transfer_step": 18,
+      "cashout_step": 19,
+      "victim": "C_VICTIM_118177",
+      "mule": "C_MULE_642624",
+      "cashout_dest": "C_SHADOW_446385",
+      "transfer_amount": 349903.32,
+      "cashout_amount": 349903.32
+    },
+    {
+      "transfer_step": 19,
+      "cashout_step": 19,
+      "victim": "C_VICTIM_999121",
+      "mule": "C_MULE_480160",
+      "cashout_dest": "C_SHADOW_811815",
+      "transfer_amount": 294947.57,
+      "cashout_amount": 294947.57
+    },
+    {
+      "transfer_step": 20,
+      "cashout_step": 20,
+      "victim": "C_VICTIM_990914",
+      "mule": "C_MULE_508126",
+      "cashout_dest": "C_SHADOW_794167",
+      "transfer_amount": 197025.21,
+      "cashout_amount": 197025.21
+    },
+    {
+      "transfer_step": 21,
+      "cashout_step": 22,
+      "victim": "C_VICTIM_960964",
+      "mule": "C_MULE_254551",
+      "cashout_dest": "C_SHADOW_335581",
+      "transfer_amount": 351131.57,
+      "cashout_amount": 351131.57
+    },
+    {
+      "transfer_step": 23,
+      "cashout_step": 23,
+      "victim": "C_VICTIM_678254",
+      "mule": "C_MULE_207676",
+      "cashout_dest": "C_SHADOW_228031",
+      "transfer_amount": 209548.09,
+      "cashout_amount": 209548.09
+    },
+    {
+      "transfer_step": 24,
+      "cashout_step": 24,
+      "victim": "C_VICTIM_344506",
+      "mule": "C_MULE_274317",
+      "cashout_dest": "C_SHADOW_654053",
+      "transfer_amount": 127987.36,
+      "cashout_amount": 127987.36
+    },
+    {
+      "transfer_step": 25,
+      "cashout_step": 26,
+      "victim": "C_VICTIM_727098",
+      "mule": "C_MULE_263086",
+      "cashout_dest": "C_SHADOW_706702",
+      "transfer_amount": 360684.88,
+      "cashout_amount": 360684.88
+    },
+    {
+      "transfer_step": 34,
+      "cashout_step": 35,
+      "victim": "C_VICTIM_895120",
+      "mule": "C_MULE_503423",
+      "cashout_dest": "C_SHADOW_369775",
+      "transfer_amount": 176710.73,
+      "cashout_amount": 176710.73
+    },
+    {
+      "transfer_step": 35,
+      "cashout_step": 36,
+      "victim": "C_VICTIM_330281",
+      "mule": "C_MULE_990510",
+      "cashout_dest": "C_SHADOW_886913",
+      "transfer_amount": 465307.15,
+      "cashout_amount": 465307.15
+    },
+    {
+      "transfer_step": 36,
+      "cashout_step": 36,
+      "victim": "C_VICTIM_425199",
+      "mule": "C_MULE_236309",
+      "cashout_dest": "C_SHADOW_939606",
+      "transfer_amount": 88728.59,
+      "cashout_amount": 88728.59
+    }
+  ]
+}

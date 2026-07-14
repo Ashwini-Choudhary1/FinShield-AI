@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fct_fraud_kpis
+    description: "Dimensional KPI table optimized for Metabase BI dashboards and executive reporting."
+    columns:
+      - name: step
+        description: "Hour step of transactions."
+      - name: transaction_type
+        description: "Transaction category."
+      - name: total_tx
+        description: "Total transaction volume count."
+      - name: fraud_tx
+        description: "Total confirmed fraudulent transaction count."
+      - name: fraud_rate_pct
+        description: "Percentage of transactions that are fraudulent."
+      - name: total_volume_usd
+        description: "Total monetary value transferred in USD."
+      - name: fraud_volume_usd
+        description: "Total fraudulent monetary value in USD."
+
+  - name: fct_ml_graph_features
+    description: "Feature table consolidating balance anomalies, transaction velocity, and money mule graph flags for XGBoost/SHAP ML training."
+    columns:
+      - name: name_orig
+        description: "Sender ID."
+      - name: is_mule_hop_sender
+        description: "1 if sender belongs to a detected money mule ring."

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  metabase:
+    image: metabase/metabase:latest
+    container_name: finshield_metabase
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase-data:/metabase-data
+      - ../finshield.duckdb:/data/finshield.duckdb:ro
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+    restart: always
+
+volumes:
+  metabase-data:

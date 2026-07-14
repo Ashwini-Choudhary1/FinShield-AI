@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: int_balance_anomalies
+    description: "Intermediate model calculating financial discrepancies and transaction velocity using window functions."
+    columns:
+      - name: step
+        description: "Time step in hours."
+      - name: name_orig
+        description: "Sender account ID."
+      - name: error_balance_orig
+        description: "Exact balance discrepancy on sender side (`old_balance - amount - new_balance`)."
+      - name: error_balance_dest
+        description: "Exact balance discrepancy on recipient side (`old_balance + amount - new_balance`)."
+      - name: tx_velocity_1h
+        description: "Number of transactions performed by this sender in the current hour step."
+
+  - name: int_money_mule_graph
+    description: "Intermediate graph model identifying multi-hop transfer rings (`Account A -> TRANSFER -> Account B -> CASH_OUT`)."
+    columns:
+      - name: mule_account_id
+        description: "Account acting as intermediary money mule."
+      - name: victim_account_id
+        description: "Account initiating transfer to mule."
+      - name: cashout_destination_id
+        description: "Final destination receiving cashed out funds."
+      - name: ring_detected_flag
+        description: "Flag indicating verified 2-hop money mule ring."

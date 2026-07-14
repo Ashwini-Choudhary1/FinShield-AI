@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: main
+    description: "Main DuckDB schema containing raw tables loaded from Python/Kaggle ingestion scripts."
+    tables:
+      - name: raw_transactions
+        description: "Raw PaySim transaction records."
+
+models:
+  - name: stg_transactions
+    description: "Staging table for raw PaySim transactions with cleaned column names and explicit data casting."
+    columns:
+      - name: step
+        description: "Represents time progression in hours (1 step = 1 hour)."
+        tests:
+          - not_null
+      - name: transaction_type
+        description: "The category of transaction: TRANSFER, CASH_OUT, CASH_IN, PAYMENT, DEBIT."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['TRANSFER', 'CASH_OUT', 'CASH_IN', 'PAYMENT', 'DEBIT']
+      - name: amount
+        description: "Monetary value of the transaction."
+        tests:
+          - not_null
+      - name: name_orig
+        description: "Unique identifier of customer initiating transaction."
+        tests:
+          - not_null
+      - name: name_dest
+        description: "Unique identifier of recipient account."
+        tests:
+          - not_null
+      - name: is_fraud
+        description: "Target variable (1 = Fraud, 0 = Legitimate)."
