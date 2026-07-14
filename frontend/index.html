@@ -544,38 +544,38 @@
             if (!graphMetadata || !graphMetadata.sample_mule_rings[idx]) return;
             const ring = graphMetadata.sample_mule_rings[idx];
 
-            // Clean, wide, premium node styling with explicit width constraints so text never overflows
+            // Clean, wide, premium node styling with valid Vis.js font properties so canvas renders instantly
             const nodes = new vis.DataSet([
                 { 
                     id: ring.victim, 
-                    label: `VICTIM SENDER\n\n${ring.victim}`, 
+                    label: `VICTIM SENDER\n${ring.victim}`, 
                     shape: 'box', 
                     margin: 16,
-                    widthConstraint: { minimum: 170, maximum: 240 },
+                    widthConstraint: { minimum: 160, maximum: 230 },
                     color: { background: '#0f172a', border: '#22d3ee', highlight: { background: '#1e293b', border: '#38bdf8' } }, 
-                    font: { color: '#e2e8f0', size: 14, face: 'JetBrains Mono', bold: true, multi: true },
+                    font: { color: '#e2e8f0', size: 14, face: 'monospace' },
                     borderWidth: 2,
                     shadow: { enabled: true, color: 'rgba(34, 211, 238, 0.25)', size: 15 }
                 },
                 { 
                     id: ring.mule, 
-                    label: `INTERMEDIARY MULE HUB\n\n${ring.mule}`, 
+                    label: `INTERMEDIARY MULE HUB\n${ring.mule}`, 
                     shape: 'box', 
                     margin: 18,
-                    widthConstraint: { minimum: 190, maximum: 260 },
+                    widthConstraint: { minimum: 180, maximum: 250 },
                     color: { background: '#2e1065', border: '#c084fc', highlight: { background: '#3b0764', border: '#e879f9' } }, 
-                    font: { color: '#f3e8ff', size: 15, face: 'Outfit', bold: true, multi: true },
+                    font: { color: '#f3e8ff', size: 15, face: 'sans-serif' },
                     borderWidth: 3,
                     shadow: { enabled: true, color: 'rgba(192, 132, 252, 0.4)', size: 22 }
                 },
                 { 
                     id: ring.cashout_dest, 
-                    label: `CASHOUT DESTINATION\n\n${ring.cashout_dest}`, 
+                    label: `CASHOUT DESTINATION\n${ring.cashout_dest}`, 
                     shape: 'box', 
                     margin: 16,
-                    widthConstraint: { minimum: 170, maximum: 240 },
+                    widthConstraint: { minimum: 160, maximum: 230 },
                     color: { background: '#4c0519', border: '#fb7185', highlight: { background: '#881337', border: '#f43f5e' } }, 
-                    font: { color: '#ffe4e6', size: 14, face: 'JetBrains Mono', bold: true, multi: true },
+                    font: { color: '#ffe4e6', size: 14, face: 'monospace' },
                     borderWidth: 2,
                     shadow: { enabled: true, color: 'rgba(251, 113, 133, 0.3)', size: 15 }
                 }
@@ -587,21 +587,21 @@
                     from: ring.victim, 
                     to: ring.mule, 
                     label: `TRANSFER: ${formatUSD(ring.transfer_amount)}\n(Step ${ring.transfer_step})`, 
-                    arrows: { to: { enabled: true, scaleFactor: 1.3 } }, 
+                    arrows: { to: { enabled: true, scaleFactor: 1.2 } }, 
                     color: { color: '#22d3ee', highlight: '#38bdf8' }, 
-                    font: { color: '#38bdf8', size: 13, face: 'JetBrains Mono', bold: true, align: 'top', background: 'rgba(15, 23, 42, 0.85)' }, 
-                    width: 3.5,
-                    length: 340
+                    font: { color: '#38bdf8', size: 13, face: 'monospace', align: 'top', background: 'rgba(15, 23, 42, 0.9)' }, 
+                    width: 3,
+                    length: 320
                 },
                 { 
                     from: ring.mule, 
                     to: ring.cashout_dest, 
                     label: `CASH_OUT: ${formatUSD(ring.cashout_amount)}\n(Step ${ring.cashout_step})`, 
-                    arrows: { to: { enabled: true, scaleFactor: 1.3 } }, 
+                    arrows: { to: { enabled: true, scaleFactor: 1.2 } }, 
                     color: { color: '#fb7185', highlight: '#f43f5e' }, 
-                    font: { color: '#fb7185', size: 13, face: 'JetBrains Mono', bold: true, align: 'top', background: 'rgba(15, 23, 42, 0.85)' }, 
-                    width: 3.5,
-                    length: 340
+                    font: { color: '#fb7185', size: 13, face: 'monospace', align: 'top', background: 'rgba(15, 23, 42, 0.9)' }, 
+                    width: 3,
+                    length: 320
                 }
             ]);
 
@@ -610,9 +610,9 @@
             const options = {
                 physics: { 
                     enabled: true,
-                    stabilization: { iterations: 200 },
+                    stabilization: { iterations: 150 },
                     barnesHut: { 
-                        springLength: 340,
+                        springLength: 320,
                         centralGravity: 0.1,
                         springConstant: 0.03,
                         damping: 0.09,
@@ -624,8 +624,8 @@
                         enabled: true,
                         direction: 'LR',
                         sortMethod: 'directed',
-                        levelSeparation: 360,
-                        nodeSpacing: 220
+                        levelSeparation: 340,
+                        nodeSpacing: 200
                     }
                 },
                 interaction: { hover: true, zoomView: true, dragNodes: true }
