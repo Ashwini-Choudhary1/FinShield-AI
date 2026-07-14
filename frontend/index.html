@@ -3,67 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinShield-AI | Real-Time Financial Crime & Graph Intelligence Platform</title>
+    <title>FinShield-AI | Institutional Graph & Financial Crime Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
-        /* Smooth tab transitions */
         .tab-pane { display: none; }
-        .tab-pane.active { display: block; animation: fadeIn 0.25s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        /* Custom scrollbar for SQL code preview and tables */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .tab-pane.active { display: block; animation: fadeIn 0.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
+<body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white antialiased">
 
-    <!-- Header / Navbar -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200/80 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/20 text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center text-white shadow-xs">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2.5">
-                        FinShield-AI
-                        <span class="text-xs font-mono font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-md">v1.0.0 PROD</span>
-                    </h1>
-                    <p class="text-xs text-slate-500 font-medium">Real-Time Financial Crime, Analytics Engineering & Explainable AI Engine</p>
+                    <div class="flex items-center gap-2.5">
+                        <h1 class="text-lg font-semibold text-slate-900 tracking-tight">FinShield-AI</h1>
+                        <span class="text-[11px] font-mono font-medium text-slate-600 bg-slate-100 border border-slate-200/80 px-2 py-0.5 rounded">v1.0.0 PROD</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-normal">Institutional Financial Crime & Explainable Graph Intelligence</p>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    DuckDB + dbt Engine Active
+            <div class="flex items-center gap-2.5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-50/80 text-emerald-700 border border-emerald-200/60">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    DuckDB & dbt Engine Active
                 </span>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 shadow-sm">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium bg-slate-900 text-slate-100 shadow-xs">
                     ROC-AUC: 1.000 | PR-AUC: 1.000
                 </span>
             </div>
         </div>
     </header>
 
-    <!-- Navigation Tabs -->
-    <nav class="bg-white border-b border-slate-200 shadow-xs">
-        <div class="max-w-7xl mx-auto px-6 flex gap-3 overflow-x-auto py-2.5">
-            <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 bg-blue-600 text-white shadow-md shadow-blue-500/20">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+    <!-- Sub Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-6 flex gap-2 overflow-x-auto py-2">
+            <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="px-4 py-2 rounded-lg font-medium text-xs transition flex items-center gap-2 bg-slate-900 text-white shadow-xs">
+                <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 BI Analytics & SQL Explorer
             </button>
-            <button onclick="switchTab('graph')" id="tab-btn-graph" class="px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+            <button onclick="switchTab('graph')" id="tab-btn-graph" class="px-4 py-2 rounded-lg font-medium text-xs transition flex items-center gap-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                 Graph ML & Money Mule Tracker
             </button>
-            <button onclick="switchTab('simulate')" id="tab-btn-simulate" class="px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <button onclick="switchTab('simulate')" id="tab-btn-simulate" class="px-4 py-2 rounded-lg font-medium text-xs transition flex items-center gap-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 Live Simulator & Explainable AI (SHAP)
             </button>
         </div>
@@ -73,85 +73,85 @@
     <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
 
         <!-- TAB 1: BI Analytics & SQL Explorer -->
-        <div id="tab-analytics" class="tab-pane active space-y-8">
+        <div id="tab-analytics" class="tab-pane active space-y-6">
             <!-- Executive KPI Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition relative overflow-hidden border-l-4 border-l-blue-600">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Volume Transferred</p>
-                    <h3 id="kpi-total-volume" class="text-3xl font-extrabold text-slate-900 font-mono tracking-tight">$0.00</h3>
-                    <p class="text-xs text-slate-500 mt-2 flex items-center gap-1.5 font-medium">
-                        <span id="kpi-total-tx" class="font-bold text-slate-700">0</span> transactions analyzed
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs transition hover:border-slate-300">
+                    <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Total Volume Transferred</p>
+                    <h3 id="kpi-total-volume" class="text-2xl font-semibold text-slate-900 font-mono tracking-tight">$0.00</h3>
+                    <p class="text-xs text-slate-500 mt-2 flex items-center gap-1 font-normal">
+                        <span id="kpi-total-tx" class="font-medium text-slate-700">0</span> transactions evaluated
                     </p>
                 </div>
 
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition relative overflow-hidden border-l-4 border-l-rose-600">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Confirmed Fraud Cases</p>
-                    <h3 id="kpi-total-fraud" class="text-3xl font-extrabold text-rose-600 font-mono tracking-tight">0</h3>
-                    <p class="text-xs text-slate-500 mt-2 flex items-center gap-1.5 font-medium">
-                        <span id="kpi-fraud-rate" class="font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-100">0%</span> overall fraud rate
+                <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs transition hover:border-slate-300">
+                    <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Confirmed Fraud Cases</p>
+                    <h3 id="kpi-total-fraud" class="text-2xl font-semibold text-rose-600 font-mono tracking-tight">0</h3>
+                    <p class="text-xs text-slate-500 mt-2 flex items-center gap-1 font-normal">
+                        <span id="kpi-fraud-rate" class="font-semibold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100/80">0%</span> incidence rate across data
                     </p>
                 </div>
 
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition relative overflow-hidden border-l-4 border-l-amber-500">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Balance Drain Anomalies</p>
-                    <h3 id="kpi-drained-accounts" class="text-3xl font-extrabold text-amber-600 font-mono tracking-tight">0</h3>
-                    <p class="text-xs text-slate-500 mt-2 font-medium">Accounts emptied to exact zero (`newbalanceOrig = 0`)</p>
+                <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs transition hover:border-slate-300">
+                    <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Balance Drain Anomalies</p>
+                    <h3 id="kpi-drained-accounts" class="text-2xl font-semibold text-amber-600 font-mono tracking-tight">0</h3>
+                    <p class="text-xs text-slate-500 mt-2 font-normal">Accounts emptied to zero (`newbalanceOrig = 0`)</p>
                 </div>
 
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition relative overflow-hidden border-l-4 border-l-purple-600">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Money Mule Ring Hops</p>
-                    <h3 id="kpi-mule-tx" class="text-3xl font-extrabold text-purple-600 font-mono tracking-tight">0</h3>
-                    <p class="text-xs text-slate-500 mt-2 font-medium">Exact 5% multi-hop self-joins across steps</p>
+                <div class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-xs transition hover:border-slate-300">
+                    <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Money Mule Ring Hops</p>
+                    <h3 id="kpi-mule-tx" class="text-2xl font-semibold text-purple-600 font-mono tracking-tight">0</h3>
+                    <p class="text-xs text-slate-500 mt-2 font-normal">Verified multi-hop transfer sequences</p>
                 </div>
             </div>
 
             <!-- Charts Section -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Main Trend Chart -->
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2 flex flex-col">
+                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs lg:col-span-2 flex flex-col">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-slate-100">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                                Hourly Transaction Volume vs Fraud Rate (`step`)
+                            <h3 class="text-sm font-semibold text-slate-900 tracking-tight">
+                                Transaction Volume & Fraud Incidence Velocity (`step`)
                             </h3>
-                            <p class="text-xs text-slate-500 mt-0.5">Aggregated via dbt dimensional mart <code class="bg-slate-100 text-blue-700 font-mono px-1.5 py-0.5 rounded border border-slate-200">fct_fraud_kpis</code></p>
+                            <p class="text-xs text-slate-500 mt-0.5 font-normal">Aggregated via dbt dimensional mart <code class="bg-slate-100 text-slate-700 font-mono px-1.5 py-0.5 rounded border border-slate-200/60">fct_fraud_kpis</code></p>
                         </div>
-                        <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-lg border border-slate-200">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/60">
                             DuckDB Analytical Query
                         </span>
                     </div>
-                    <div class="relative flex-1 min-h-[340px] w-full">
+                    <div class="relative flex-1 min-h-[360px] w-full">
                         <canvas id="trendChart"></canvas>
                     </div>
                 </div>
 
                 <!-- Transaction Type Breakdown -->
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs flex flex-col justify-between">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-1">Transaction Type Breakdown</h3>
-                        <p class="text-xs text-slate-500 mb-6 pb-3 border-b border-slate-100">Distribution of activity & fraud by channel</p>
+                        <h3 class="text-sm font-semibold text-slate-900 mb-1 tracking-tight">Channel Activity Distribution</h3>
+                        <p class="text-xs text-slate-500 mb-6 pb-3 border-b border-slate-100 font-normal">Breakdown of total transaction volume & fraud</p>
                         <div id="type-breakdown-list" class="space-y-4">
                             <!-- Populated via JS -->
                         </div>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100 bg-blue-50/60 rounded-xl p-3.5 border border-blue-100">
-                        <p class="text-xs text-blue-900 font-medium leading-relaxed">
-                            💡 <strong class="font-bold">Analytics Engineering Finding:</strong> 100% of all fraud cases in this dataset occur strictly within <code class="bg-white text-blue-700 px-1 py-0.5 rounded font-mono font-bold border border-blue-200">TRANSFER</code> and <code class="bg-white text-rose-700 px-1 py-0.5 rounded font-mono font-bold border border-blue-200">CASH_OUT</code> channels.
+                    <div class="mt-6 pt-4 border-t border-slate-100 bg-slate-50 rounded-lg p-3.5 border border-slate-200/60">
+                        <p class="text-xs text-slate-600 font-normal leading-relaxed">
+                            <span class="font-semibold text-slate-900">Analytics Engineering Note:</span> Across this dataset, 100% of confirmed fraud cases occur specifically within the <code class="bg-white text-slate-800 px-1 py-0.5 rounded font-mono font-medium border border-slate-200">TRANSFER</code> and <code class="bg-white text-slate-800 px-1 py-0.5 rounded font-mono font-medium border border-slate-200">CASH_OUT</code> channels.
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- SQL & dbt Architecture Preview -->
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">dbt Analytics Engineering Transformation Lineage</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Staging (`stg_transactions`) → Intermediate (`int_balance_anomalies`) → Dimensional Mart (`fct_fraud_kpis`)</p>
+                        <h3 class="text-sm font-semibold text-slate-900 tracking-tight">dbt Analytics Engineering Transformation Lineage</h3>
+                        <p class="text-xs text-slate-500 mt-0.5 font-normal">Staging (`stg_transactions`) → Intermediate (`int_balance_anomalies`) → Dimensional Mart (`fct_fraud_kpis`)</p>
                     </div>
-                    <span class="text-xs font-mono font-semibold bg-slate-100 text-slate-700 px-3 py-1 rounded-lg border border-slate-200">SQL Window Functions (`COUNT(*) OVER`)</span>
+                    <span class="text-xs font-mono font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded border border-slate-200/60">SQL Window Functions (`COUNT(*) OVER`)</span>
                 </div>
-                <div class="bg-slate-900 rounded-xl p-5 border border-slate-800 overflow-x-auto text-slate-200 font-mono text-xs leading-relaxed shadow-inner">
+                <div class="bg-slate-900 rounded-lg p-5 border border-slate-800 overflow-x-auto text-slate-200 font-mono text-xs leading-relaxed">
                     <pre><code>-- dbt_finshield/models/intermediate/int_balance_anomalies.sql
 with staging as (
     select * from {{ ref('stg_transactions') }}
@@ -159,16 +159,16 @@ with staging as (
 anomalies as (
     select
         *,
-        -- Exact balance discrepancies (Victim vs Recipient)
+        -- Exact balance discrepancies (Sender vs Recipient)
         (old_balance_orig - amount) - new_balance_orig as error_balance_orig,
         (old_balance_dest + amount) - new_balance_dest as error_balance_dest,
         
-        -- High-Velocity Window Function: Count transactions by sender in a rolling 1-hour window
+        -- High-Velocity Window Function: Rolling transaction frequency evaluation
         COUNT(*) OVER (
             PARTITION BY name_orig, step
         ) as tx_velocity_1h,
         
-        -- Flag when account balance is drained to exact zero
+        -- Flag accounts where balance is emptied to exactly zero
         case when old_balance_orig = amount and new_balance_orig = 0 then 1 else 0 end as flag_orig_drained
     from staging
 )
@@ -178,101 +178,99 @@ select * from anomalies;</code></pre>
         </div>
 
         <!-- TAB 2: Graph ML & Money Mule Tracker -->
-        <div id="tab-graph" class="tab-pane space-y-8">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div id="tab-graph" class="tab-pane space-y-6">
+            <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
                     <div>
-                        <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                            Money Mule Ring Graph Investigator
-                            <span class="text-xs font-bold font-mono bg-purple-50 text-purple-700 border border-purple-200 px-2.5 py-0.5 rounded-md">NetworkX Graph Engine</span>
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-1">
-                            Self-joined multi-hop detection (`Victim -> TRANSFER -> Intermediary Mule -> CASH_OUT`). Each action is rendered as an intermediate node to guarantee 100% unclipped, crystal-clear labels!
+                        <div class="flex items-center gap-2.5">
+                            <h3 class="text-sm font-semibold text-slate-900 tracking-tight">Money Mule Ring Graph Investigator</h3>
+                            <span class="text-[11px] font-mono font-medium bg-purple-50 text-purple-700 border border-purple-200/60 px-2 py-0.5 rounded">NetworkX Graph Engine</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1 font-normal">
+                            Self-joined multi-hop detection (`Victim -> TRANSFER -> Intermediary Mule -> CASH_OUT`). Intermediate action badges guarantee clean separation without text overlap.
                         </p>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <button onclick="networkInstance && networkInstance.fit()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition border border-slate-300">
-                            Reset Zoom / Center Graph
+                    <div>
+                        <button onclick="networkInstance && networkInstance.fit()" class="px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium transition border border-slate-200/80">
+                            Reset View / Center Canvas
                         </button>
                     </div>
                 </div>
 
                 <!-- Vis.js Network Canvas Container -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 border-2 border-slate-200 rounded-xl bg-slate-50/50 relative overflow-hidden min-h-[460px] flex items-center justify-center shadow-inner">
+                    <div class="lg:col-span-2 border border-slate-200/80 rounded-xl bg-[#fcfcfd] relative overflow-hidden min-h-[460px] flex items-center justify-center">
                         <div id="network-graph" class="w-full h-[460px]"></div>
-                        <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-600 shadow-sm flex items-center gap-4 font-medium">
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-blue-600 border border-blue-700"></span> Victim Sender</span>
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-sky-100 border border-sky-400"></span> TRANSFER Action</span>
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-purple-600 border border-purple-700"></span> Intermediary Mule</span>
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-rose-100 border border-rose-400"></span> CASH_OUT Action</span>
-                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-rose-600 border border-rose-700"></span> Cashout Destination</span>
+                        <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur border border-slate-200/80 rounded-lg px-3.5 py-2 text-[11px] text-slate-600 shadow-xs flex items-center gap-3.5 font-medium">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-blue-600 border border-blue-700"></span> Victim Sender</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-sky-100 border border-sky-400"></span> TRANSFER Action</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-purple-600 border border-purple-700"></span> Intermediary Mule</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-rose-100 border border-rose-400"></span> CASH_OUT Action</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-rose-600 border border-rose-700"></span> Cashout Destination</span>
                         </div>
                     </div>
 
                     <!-- Selected Ring Details Card -->
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between">
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-5 flex flex-col justify-between">
                         <div>
-                            <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 pb-2 border-b border-slate-200 flex items-center justify-between">
-                                Selected Ring Inspection
-                                <span id="ring-id-badge" class="bg-purple-100 text-purple-800 font-mono text-xs px-2 py-0.5 rounded border border-purple-300 font-bold">RING-101</span>
-                            </h4>
+                            <div class="pb-3 mb-4 border-b border-slate-200/80 flex items-center justify-between">
+                                <h4 class="text-xs font-semibold text-slate-900 uppercase tracking-wider">Selected Ring Inspection</h4>
+                                <span id="ring-id-badge" class="bg-purple-100/80 text-purple-800 font-mono text-[11px] px-2 py-0.5 rounded border border-purple-200 font-semibold">RING-101</span>
+                            </div>
                             <div class="space-y-3 font-mono text-xs">
-                                <div class="flex justify-between py-1.5 border-b border-slate-200/60">
-                                    <span class="text-slate-500">Time Progression:</span>
-                                    <span id="ring-time" class="font-bold text-slate-900">Step 15 → 15</span>
+                                <div class="flex justify-between py-1.5 border-b border-slate-200/50">
+                                    <span class="text-slate-500 font-sans font-normal">Time Progression</span>
+                                    <span id="ring-time" class="font-medium text-slate-900">Step 15 → 15</span>
                                 </div>
-                                <div class="flex justify-between py-1.5 border-b border-slate-200/60">
-                                    <span class="text-slate-500">Transfer Volume:</span>
-                                    <span id="ring-amount" class="font-bold text-emerald-700">$181.00</span>
+                                <div class="flex justify-between py-1.5 border-b border-slate-200/50">
+                                    <span class="text-slate-500 font-sans font-normal">Transfer Volume</span>
+                                    <span id="ring-amount" class="font-medium text-slate-900">$181.00</span>
                                 </div>
-                                <div class="flex justify-between py-1.5 border-b border-slate-200/60">
-                                    <span class="text-slate-500">Victim Sender Account:</span>
-                                    <span id="ring-victim" class="font-bold text-blue-700">C1231006815</span>
+                                <div class="flex justify-between py-1.5 border-b border-slate-200/50">
+                                    <span class="text-slate-500 font-sans font-normal">Victim Account</span>
+                                    <span id="ring-victim" class="font-medium text-blue-700">C1231006815</span>
                                 </div>
-                                <div class="flex justify-between py-1.5 border-b border-slate-200/60">
-                                    <span class="text-slate-500">Intermediary Hub (Mule):</span>
-                                    <span id="ring-mule" class="font-bold text-purple-700">C1360767589</span>
+                                <div class="flex justify-between py-1.5 border-b border-slate-200/50">
+                                    <span class="text-slate-500 font-sans font-normal">Intermediary Hub</span>
+                                    <span id="ring-mule" class="font-medium text-purple-700">C1360767589</span>
                                 </div>
                                 <div class="flex justify-between py-1.5">
-                                    <span class="text-slate-500">Final Cashout Destination:</span>
-                                    <span id="ring-dest" class="font-bold text-rose-700">M1979787155</span>
+                                    <span class="text-slate-500 font-sans font-normal">Final Destination</span>
+                                    <span id="ring-dest" class="font-medium text-rose-700">M1979787155</span>
                                 </div>
                             </div>
 
-                            <div class="mt-6 bg-rose-50 border border-rose-200 rounded-xl p-4 text-xs text-rose-900 leading-relaxed shadow-sm">
-                                <p class="font-bold flex items-center gap-1.5 mb-1 text-rose-800">
-                                    ⚠️ Graph Anomaly Verified
-                                </p>
-                                Funds transferred from victim account into intermediary mule account and immediately cashed out within 1 hour (`Step Progression`).
+                            <div class="mt-6 bg-white border border-slate-200/80 rounded-lg p-4 text-xs text-slate-600 leading-relaxed shadow-2xs">
+                                <p class="font-semibold text-slate-900 mb-1">Verified Graph Anomaly</p>
+                                Funds transferred from victim account into intermediary mule account and immediately liquidated within 1 hour (`Step Progression`).
                             </div>
                         </div>
 
-                        <div class="mt-6 pt-4 border-t border-slate-200 text-xs text-slate-500">
-                            <p><strong class="text-slate-800 font-bold">Why this matters:</strong> Financial criminals rarely cash out directly from victim accounts. They bounce funds through intermediary "mule" accounts to evade simple tabular rules.</p>
+                        <div class="mt-6 pt-4 border-t border-slate-200/80 text-xs text-slate-500 font-normal">
+                            <p><strong class="text-slate-700 font-medium">Domain Context:</strong> Financial criminals rarely cash out directly from victim accounts. They route funds through intermediary mule accounts to evade simple tabular rules.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Verified Rings Table -->
                 <div class="mt-8">
-                    <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">
+                    <h4 class="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3">
                         Verified 2-Hop Money Mule Rings (`sample_mule_rings`)
                     </h4>
-                    <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
-                        <table class="w-full text-left border-collapse text-xs font-mono">
+                    <div class="border border-slate-200/80 rounded-xl overflow-hidden shadow-2xs bg-white">
+                        <table class="w-full text-left border-collapse text-xs">
                             <thead>
-                                <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 font-bold uppercase">
-                                    <th class="py-3 px-4">Ring ID</th>
-                                    <th class="py-3 px-4">Victim Sender (Leg 1)</th>
-                                    <th class="py-3 px-4">Intermediary Mule Hub</th>
-                                    <th class="py-3 px-4">Cashout Destination</th>
-                                    <th class="py-3 px-4">Volume ($ USD)</th>
-                                    <th class="py-3 px-4">Time Steps (Hours)</th>
+                                <tr class="bg-slate-50 text-slate-600 border-b border-slate-200/80 font-semibold uppercase text-[11px] tracking-wider">
+                                    <th class="py-3 px-4 font-mono">Ring ID</th>
+                                    <th class="py-3 px-4 font-mono">Victim Sender</th>
+                                    <th class="py-3 px-4 font-mono">Intermediary Hub</th>
+                                    <th class="py-3 px-4 font-mono">Cashout Destination</th>
+                                    <th class="py-3 px-4 font-mono">Volume ($ USD)</th>
+                                    <th class="py-3 px-4">Time Steps</th>
                                     <th class="py-3 px-4 text-right">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="mule-rings-tbody" class="divide-y divide-slate-200">
+                            <tbody id="mule-rings-tbody" class="divide-y divide-slate-200/60 font-mono text-xs">
                                 <!-- Populated via JS -->
                             </tbody>
                         </table>
@@ -282,41 +280,41 @@ select * from anomalies;</code></pre>
         </div>
 
         <!-- TAB 3: Live Simulator & Explainable AI (SHAP) -->
-        <div id="tab-simulate" class="tab-pane space-y-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div id="tab-simulate" class="tab-pane space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 <!-- Input Simulation Panel -->
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-extrabold text-slate-900 mb-1 flex items-center gap-2">
-                            ⚡ Live Risk Simulator
+                        <h3 class="text-sm font-semibold text-slate-900 tracking-tight mb-1">
+                            Real-Time Risk & Feature Simulator
                         </h3>
-                        <p class="text-xs text-slate-500 mb-6 pb-3 border-b border-slate-100">Input features below or use presets to test real-time inference & SHAP explainability.</p>
+                        <p class="text-xs text-slate-500 mb-6 pb-3 border-b border-slate-100 font-normal">Modify features below or select quick presets to test real-time inference and SHAP attribution.</p>
 
                         <!-- Presets -->
                         <div class="mb-6">
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Quick Simulation Presets</label>
+                            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2">Simulation Presets</label>
                             <div class="grid grid-cols-3 gap-2">
-                                <button onclick="applyPreset('drained')" class="px-2.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition flex flex-col items-center gap-1 text-center shadow-sm">
-                                    <span>🔥 Account Drain</span>
+                                <button onclick="applyPreset('drained')" class="px-2.5 py-2 rounded-lg bg-rose-50/70 hover:bg-rose-100/80 text-rose-800 border border-rose-200/70 text-xs font-medium transition flex flex-col items-center gap-1 text-center">
+                                    <span>Account Drain</span>
                                     <span class="text-[10px] font-normal text-rose-600 font-mono">$485k → $0</span>
                                 </button>
-                                <button onclick="applyPreset('mule')" class="px-2.5 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-xs font-bold transition flex flex-col items-center gap-1 text-center shadow-sm">
-                                    <span>🕸️ Money Mule</span>
+                                <button onclick="applyPreset('mule')" class="px-2.5 py-2 rounded-lg bg-purple-50/70 hover:bg-purple-100/80 text-purple-800 border border-purple-200/70 text-xs font-medium transition flex flex-col items-center gap-1 text-center">
+                                    <span>Money Mule</span>
                                     <span class="text-[10px] font-normal text-purple-600 font-mono">High Velocity</span>
                                 </button>
-                                <button onclick="applyPreset('legit')" class="px-2.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold transition flex flex-col items-center gap-1 text-center shadow-sm">
-                                    <span>🛡️ Legitimate</span>
-                                    <span class="text-[10px] font-normal text-emerald-600 font-mono">Normal Payment</span>
+                                <button onclick="applyPreset('legit')" class="px-2.5 py-2 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 text-xs font-medium transition flex flex-col items-center gap-1 text-center">
+                                    <span>Legitimate</span>
+                                    <span class="text-[10px] font-normal text-slate-500 font-mono">Normal Payment</span>
                                 </button>
                             </div>
                         </div>
 
                         <!-- Form Inputs -->
-                        <div class="space-y-4 font-mono text-xs">
+                        <div class="space-y-3.5 font-mono text-xs">
                             <div>
-                                <label class="block text-slate-700 font-bold mb-1 font-sans">Transaction Type</label>
-                                <select id="sim-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Transaction Type</label>
+                                <select id="sim-type" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-3 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                     <option value="PAYMENT">PAYMENT</option>
                                     <option value="TRANSFER" selected>TRANSFER</option>
                                     <option value="CASH_OUT">CASH_OUT</option>
@@ -326,47 +324,47 @@ select * from anomalies;</code></pre>
                             </div>
 
                             <div>
-                                <label class="block text-slate-700 font-bold mb-1 font-sans">Amount ($ USD)</label>
-                                <input id="sim-amount" type="number" value="485000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Amount ($ USD)</label>
+                                <input id="sim-amount" type="number" value="485000" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-3 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                             </div>
 
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Sender Old Balance ($)</label>
-                                    <input id="sim-oldbalance-orig" type="number" value="485000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Sender Old Balance ($)</label>
+                                    <input id="sim-oldbalance-orig" type="number" value="485000" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-3 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Sender New Balance ($)</label>
-                                    <input id="sim-newbalance-orig" type="number" value="0" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Sender New Balance ($)</label>
+                                    <input id="sim-newbalance-orig" type="number" value="0" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-3 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Recipient Old Balance ($)</label>
-                                    <input id="sim-oldbalance-dest" type="number" value="1000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Recipient Old Balance ($)</label>
+                                    <input id="sim-oldbalance-dest" type="number" value="1000" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-3 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Recipient New Balance ($)</label>
-                                    <input id="sim-newbalance-dest" type="number" value="1000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Recipient New Balance ($)</label>
+                                    <input id="sim-newbalance-dest" type="number" value="1000" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-3 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-3 gap-3">
+                            <div class="grid grid-cols-3 gap-2.5">
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Velocity (1h)</label>
-                                    <input id="sim-velocity" type="number" value="4" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Velocity (1h)</label>
+                                    <input id="sim-velocity" type="number" value="4" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-2.5 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Mule Victim?</label>
-                                    <select id="sim-victim" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-2 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Mule Victim?</label>
+                                    <select id="sim-victim" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-2 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                         <option value="1">Yes (1)</option>
                                         <option value="0">No (0)</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-slate-700 font-bold mb-1 font-sans">Mule Hub?</label>
-                                    <select id="sim-mule" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-2 py-2 text-slate-900 font-bold focus:outline-none focus:border-blue-600 shadow-sm">
+                                    <label class="block text-slate-700 font-medium mb-1 font-sans text-xs">Mule Hub?</label>
+                                    <select id="sim-mule" class="w-full bg-slate-50 border border-slate-200/80 rounded-lg px-2 py-2 text-slate-900 font-medium focus:outline-none focus:border-slate-400">
                                         <option value="0">No (0)</option>
                                         <option value="1">Yes (1)</option>
                                     </select>
@@ -375,49 +373,51 @@ select * from anomalies;</code></pre>
                         </div>
                     </div>
 
-                    <button onclick="runSimulation()" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 text-sm font-sans">
-                        <span>Run Live Inference & SHAP Explanation</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <button onclick="runSimulation()" class="w-full mt-6 bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 px-4 rounded-lg transition shadow-xs flex items-center justify-center gap-2 text-xs font-sans">
+                        <span>Run Live Inference & Explainability</span>
+                        <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                 </div>
 
                 <!-- Prediction & SHAP Waterfall Panel -->
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2 flex flex-col justify-between">
+                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs lg:col-span-2 flex flex-col justify-between">
                     <div>
                         <!-- Prediction Header -->
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
                             <div>
-                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Model Prediction & Risk Classification</p>
+                                <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Model Classification & Confidence Score</p>
                                 <div class="flex items-center gap-3">
-                                    <span id="res-score" class="text-4xl font-extrabold font-mono text-slate-900 tracking-tight">100.00%</span>
-                                    <span id="res-badge" class="px-3.5 py-1 rounded-xl text-sm font-bold bg-rose-100 text-rose-800 border border-rose-300 uppercase tracking-wider shadow-sm">
+                                    <span id="res-score" class="text-3xl font-bold font-mono text-slate-900 tracking-tight">100.00%</span>
+                                    <span id="res-badge" class="px-3 py-1 rounded-md text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-200 uppercase tracking-wider">
                                         HIGH RISK (FLAGGED)
                                     </span>
                                 </div>
                             </div>
                             <div class="text-left sm:text-right font-mono text-xs text-slate-500">
-                                <p class="font-bold text-slate-700">XGBoost Classifier (`xgboost_fraud_model.pkl`)</p>
-                                <p id="res-threshold">Decision Threshold: 1</p>
+                                <p class="font-medium text-slate-700 font-sans">XGBoost Classifier (`xgboost_fraud_model.pkl`)</p>
+                                <p id="res-threshold" class="text-[11px] text-slate-400">Decision Threshold: 1</p>
                             </div>
                         </div>
 
                         <!-- SHAP Waterfall Chart Container -->
                         <div class="mt-6">
-                            <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1 flex items-center justify-between">
-                                <span>SHAP Feature Attribution (Why this transaction scored this way)</span>
-                                <span class="text-xs font-normal font-sans text-slate-500">Red = Increases Risk | Blue = Decreases Risk</span>
-                            </h4>
-                            <p class="text-xs text-slate-500 mb-6">Shapley values break down exact feature contributions from base value to output prediction.</p>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                                <h4 class="text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                                    SHAP Feature Attribution Analysis
+                                </h4>
+                                <span class="text-[11px] font-normal text-slate-500">Red = Positive Risk Contribution | Blue = Negative Risk Contribution</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-5 font-normal">Shapley values decompose exact marginal contributions of each input variable toward the final output probability.</p>
                             
-                            <div id="shap-bars" class="space-y-3 font-mono text-xs">
+                            <div id="shap-bars" class="space-y-2.5 font-mono text-xs">
                                 <!-- Populated via JS -->
                             </div>
                         </div>
                     </div>
 
                     <!-- Computed Features Preview -->
-                    <div class="mt-8 pt-5 border-t border-slate-100 bg-slate-50 rounded-xl p-4 border border-slate-200">
-                        <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-sans">Computed Anomaly Indicators (`int_balance_anomalies`)</h5>
+                    <div class="mt-8 pt-5 border-t border-slate-100 bg-slate-50 rounded-lg p-4 border border-slate-200/60">
+                        <h5 class="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-2 font-sans">Computed Anomaly Indicators (`int_balance_anomalies`)</h5>
                         <div id="res-features" class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs text-slate-600">
                             <!-- Populated via JS -->
                         </div>
@@ -430,10 +430,10 @@ select * from anomalies;</code></pre>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
-            <p>Built with <strong class="text-slate-800 font-bold">DuckDB, dbt, NetworkX, XGBoost, SHAP, and FastAPI</strong>.</p>
-            <p class="font-mono">FinShield-AI Portfolio Command Center</p>
+    <footer class="bg-white border-t border-slate-200/80 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-normal">
+            <p>Built with <span class="text-slate-800 font-medium">DuckDB, dbt, NetworkX, XGBoost, SHAP, and FastAPI</span>.</p>
+            <p class="font-mono text-[11px] text-slate-400">FinShield-AI Command Center</p>
         </div>
     </footer>
 
@@ -446,12 +446,12 @@ select * from anomalies;</code></pre>
         function switchTab(tabId) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(el => {
-                el.className = "px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900";
+                el.className = "px-4 py-2 rounded-lg font-medium text-xs transition flex items-center gap-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900";
             });
 
             document.getElementById(`tab-${tabId}`).classList.add('active');
             const btn = document.getElementById(`tab-btn-${tabId}`);
-            btn.className = "px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 bg-blue-600 text-white shadow-md shadow-blue-500/20";
+            btn.className = "px-4 py-2 rounded-lg font-medium text-xs transition flex items-center gap-2 bg-slate-900 text-white shadow-xs";
 
             if (tabId === 'graph') {
                 if (!graphMetadata) loadGraphData();
@@ -495,6 +495,7 @@ select * from anomalies;</code></pre>
             const ctx = document.getElementById('trendChart').getContext('2d');
             if (trendChartInstance) trendChartInstance.destroy();
 
+            // Aggregate steps into cleaner intervals or downsample if too dense so chart looks executive and smooth
             const steps = data.map(d => `Step ${d.step}`);
             const volumes = data.map(d => d.total_tx);
             const fraudRates = data.map(d => d.fraud_rate_pct);
@@ -505,24 +506,25 @@ select * from anomalies;</code></pre>
                     labels: steps,
                     datasets: [
                         {
-                            label: 'Total Volume (Count)',
+                            label: 'Transaction Volume (Count)',
                             data: volumes,
-                            backgroundColor: 'rgba(37, 99, 235, 0.15)',
-                            borderColor: '#2563eb',
-                            borderWidth: 1.5,
-                            borderRadius: 4,
+                            backgroundColor: 'rgba(51, 65, 85, 0.12)',
+                            borderColor: 'rgba(51, 65, 85, 0.3)',
+                            borderWidth: 1,
+                            borderRadius: 3,
                             yAxisID: 'y'
                         },
                         {
-                            label: 'Fraud Rate (%)',
+                            label: 'Fraud Incidence Rate (%)',
                             data: fraudRates,
                             type: 'line',
                             borderColor: '#e11d48',
-                            backgroundColor: 'rgba(225, 29, 72, 0.1)',
-                            borderWidth: 2.5,
-                            tension: 0.25,
-                            pointRadius: 2,
-                            pointHoverRadius: 5,
+                            backgroundColor: 'rgba(225, 29, 72, 0.08)',
+                            borderWidth: 2,
+                            tension: 0.35,
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            fill: true,
                             yAxisID: 'y1'
                         }
                     ]
@@ -532,30 +534,33 @@ select * from anomalies;</code></pre>
                     maintainAspectRatio: false,
                     scales: {
                         x: { 
-                            grid: { color: 'rgba(0, 0, 0, 0.05)', tickLength: 6 }, 
-                            ticks: { color: '#475569', font: { size: 12, family: 'JetBrains Mono', weight: '600' }, maxTicksLimit: 24, padding: 6 } 
+                            grid: { display: false }, 
+                            ticks: { color: '#64748b', font: { size: 11, family: 'Inter', weight: '500' }, maxTicksLimit: 16, padding: 6 } 
                         },
                         y: { 
-                            grid: { color: 'rgba(0, 0, 0, 0.05)' }, 
-                            ticks: { color: '#475569', font: { size: 12, family: 'JetBrains Mono', weight: '600' }, padding: 8 } 
+                            grid: { color: 'rgba(0, 0, 0, 0.04)' }, 
+                            ticks: { color: '#64748b', font: { size: 11, family: 'JetBrains Mono', weight: '500' }, padding: 8 } 
                         },
                         y1: { 
                             position: 'right', 
                             grid: { drawOnChartArea: false }, 
-                            ticks: { color: '#e11d48', font: { size: 12, family: 'JetBrains Mono', weight: '700' }, padding: 8, callback: val => val + '%' } 
+                            ticks: { color: '#e11d48', font: { size: 11, family: 'JetBrains Mono', weight: '600' }, padding: 8, callback: val => val + '%' },
+                            max: 100,
+                            min: 0
                         }
                     },
                     plugins: {
                         legend: { 
-                            labels: { color: '#1e293b', font: { size: 13, family: 'Outfit', weight: '600' }, padding: 16, usePointStyle: true } 
+                            labels: { color: '#334155', font: { size: 12, family: 'Inter', weight: '500' }, padding: 16, usePointStyle: true, boxWidth: 8 } 
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
-                            titleFont: { size: 14, family: 'Outfit', weight: 'bold' },
-                            bodyFont: { size: 13, family: 'JetBrains Mono' },
-                            borderColor: 'rgba(37, 99, 235, 0.4)',
+                            backgroundColor: '#0f172a',
+                            titleFont: { size: 12, family: 'Inter', weight: '600' },
+                            bodyFont: { size: 11, family: 'JetBrains Mono' },
+                            borderColor: 'rgba(255, 255, 255, 0.1)',
                             borderWidth: 1,
-                            padding: 12
+                            padding: 10,
+                            cornerRadius: 6
                         }
                     }
                 }
@@ -570,13 +575,13 @@ select * from anomalies;</code></pre>
             types.forEach(t => {
                 const pct = ((t.volume / maxVol) * 100).toFixed(0);
                 container.innerHTML += `
-                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                    <div class="bg-slate-50 p-3.5 rounded-lg border border-slate-200/80">
                         <div class="flex items-center justify-between text-xs mb-2">
-                            <span class="font-bold text-slate-900 font-mono text-sm">${t.transaction_type}</span>
-                            <span class="text-slate-600 font-medium">${t.volume.toLocaleString()} tx <span class="font-bold text-rose-600 ml-1">(${t.fraud_count} fraud)</span></span>
+                            <span class="font-semibold text-slate-900 font-mono text-xs">${t.transaction_type}</span>
+                            <span class="text-slate-600 font-normal">${t.volume.toLocaleString()} tx <span class="font-semibold text-rose-600 ml-1">(${t.fraud_count} fraud)</span></span>
                         </div>
-                        <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 h-full rounded-full" style="width: ${pct}%"></div>
+                        <div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-slate-800 h-full rounded-full" style="width: ${pct}%"></div>
                         </div>
                     </div>
                 `;
@@ -596,15 +601,15 @@ select * from anomalies;</code></pre>
                 if (data.sample_mule_rings && data.sample_mule_rings.length > 0) {
                     data.sample_mule_rings.forEach((ring, idx) => {
                         tbody.innerHTML += `
-                            <tr class="hover:bg-slate-50/80 transition">
-                                <td class="py-3 px-4 font-bold text-purple-700">RING-${idx+101}</td>
-                                <td class="py-3 px-4 font-semibold text-slate-800">${ring.victim}</td>
-                                <td class="py-3 px-4 text-purple-900 font-extrabold">${ring.mule}</td>
-                                <td class="py-3 px-4 text-rose-700 font-semibold">${ring.cashout_dest}</td>
-                                <td class="py-3 px-4 font-bold text-emerald-700">${formatUSD(ring.transfer_amount)}</td>
-                                <td class="py-3 px-4 text-slate-600">Step ${ring.transfer_step} → ${ring.cashout_step}</td>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="py-3 px-4 font-semibold text-purple-700">RING-${idx+101}</td>
+                                <td class="py-3 px-4 text-slate-800">${ring.victim}</td>
+                                <td class="py-3 px-4 text-purple-900 font-semibold">${ring.mule}</td>
+                                <td class="py-3 px-4 text-rose-700 font-medium">${ring.cashout_dest}</td>
+                                <td class="py-3 px-4 font-semibold text-slate-900">${formatUSD(ring.transfer_amount)}</td>
+                                <td class="py-3 px-4 text-slate-500">Step ${ring.transfer_step} → ${ring.cashout_step}</td>
                                 <td class="py-3 px-4 text-right">
-                                    <button onclick="renderSelectedRing(${idx})" class="px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-xs transition">View Graph</button>
+                                    <button onclick="renderSelectedRing(${idx})" class="px-3 py-1.5 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs shadow-2xs transition">Inspect</button>
                                 </td>
                             </tr>
                         `;
@@ -629,73 +634,69 @@ select * from anomalies;</code></pre>
             document.getElementById('ring-mule').innerText = ring.mule;
             document.getElementById('ring-dest').innerText = ring.cashout_dest;
 
-            // INTERMEDIATE ACTION NODE ARCHITECTURE:
-            // By rendering the transfer and cashout actions as distinct pill/badge nodes between accounts,
-            // Vis.js guarantees 100% unclipped, crystal-clear labels with zero collision or squishing!
             const nodes = new vis.DataSet([
                 { 
                     id: ring.victim, 
                     label: `VICTIM SENDER\n\n${ring.victim}`, 
                     shape: 'box', 
-                    margin: 16,
-                    widthConstraint: { minimum: 160, maximum: 230 },
-                    color: { background: '#ffffff', border: '#0284c7', highlight: { background: '#f0f9ff', border: '#0284c7' } }, 
-                    font: { color: '#0f172a', size: 14, face: 'JetBrains Mono', bold: true },
-                    borderWidth: 2,
-                    shadow: { enabled: true, color: 'rgba(2, 132, 199, 0.15)', size: 12 }
-                },
-                { 
-                    id: `tx_${idx}`, 
-                    label: `💸 TRANSFER\n${formatUSD(ring.transfer_amount)} (Step ${ring.transfer_step})`, 
-                    shape: 'box', 
-                    margin: 12,
+                    margin: 14,
                     widthConstraint: { minimum: 150, maximum: 210 },
-                    color: { background: '#e0f2fe', border: '#0284c7', highlight: { background: '#bae6fd', border: '#0284c7' } }, 
-                    font: { color: '#0369a1', size: 13, face: 'JetBrains Mono', bold: true },
+                    color: { background: '#ffffff', border: '#0284c7', highlight: { background: '#f0f9ff', border: '#0284c7' } }, 
+                    font: { color: '#0f172a', size: 13, face: 'JetBrains Mono', bold: true },
                     borderWidth: 1.5,
                     shadow: { enabled: true, color: 'rgba(2, 132, 199, 0.1)', size: 8 }
                 },
                 { 
+                    id: `tx_${idx}`, 
+                    label: `TRANSFER\n${formatUSD(ring.transfer_amount)} (Step ${ring.transfer_step})`, 
+                    shape: 'box', 
+                    margin: 10,
+                    widthConstraint: { minimum: 140, maximum: 190 },
+                    color: { background: '#f0f9ff', border: '#0284c7', highlight: { background: '#e0f2fe', border: '#0284c7' } }, 
+                    font: { color: '#0369a1', size: 12, face: 'JetBrains Mono', bold: true },
+                    borderWidth: 1,
+                    shadow: { enabled: false }
+                },
+                { 
                     id: ring.mule, 
-                    label: `INTERMEDIARY MULE HUB\n\n${ring.mule}`, 
-                    shape: 'box', 
-                    margin: 18,
-                    widthConstraint: { minimum: 180, maximum: 250 },
-                    color: { background: '#ffffff', border: '#9333ea', highlight: { background: '#faf5ff', border: '#9333ea' } }, 
-                    font: { color: '#581c87', size: 15, face: 'Outfit', bold: true },
-                    borderWidth: 3,
-                    shadow: { enabled: true, color: 'rgba(147, 51, 234, 0.25)', size: 18 }
-                },
-                { 
-                    id: `co_${idx}`, 
-                    label: `🚨 CASH_OUT\n${formatUSD(ring.cashout_amount)} (Step ${ring.cashout_step})`, 
-                    shape: 'box', 
-                    margin: 12,
-                    widthConstraint: { minimum: 150, maximum: 210 },
-                    color: { background: '#ffe4e6', border: '#e11d48', highlight: { background: '#fecdd3', border: '#e11d48' } }, 
-                    font: { color: '#9f1239', size: 13, face: 'JetBrains Mono', bold: true },
-                    borderWidth: 1.5,
-                    shadow: { enabled: true, color: 'rgba(225, 29, 72, 0.1)', size: 8 }
-                },
-                { 
-                    id: ring.cashout_dest, 
-                    label: `CASHOUT DESTINATION\n\n${ring.cashout_dest}`, 
+                    label: `INTERMEDIARY HUB\n\n${ring.mule}`, 
                     shape: 'box', 
                     margin: 16,
                     widthConstraint: { minimum: 160, maximum: 230 },
-                    color: { background: '#ffffff', border: '#e11d48', highlight: { background: '#fff1f2', border: '#e11d48' } }, 
-                    font: { color: '#881337', size: 14, face: 'JetBrains Mono', bold: true },
+                    color: { background: '#ffffff', border: '#9333ea', highlight: { background: '#faf5ff', border: '#9333ea' } }, 
+                    font: { color: '#581c87', size: 14, face: 'Inter', bold: true },
                     borderWidth: 2,
-                    shadow: { enabled: true, color: 'rgba(225, 29, 72, 0.15)', size: 12 }
+                    shadow: { enabled: true, color: 'rgba(147, 51, 234, 0.15)', size: 12 }
+                },
+                { 
+                    id: `co_${idx}`, 
+                    label: `CASH_OUT\n${formatUSD(ring.cashout_amount)} (Step ${ring.cashout_step})`, 
+                    shape: 'box', 
+                    margin: 10,
+                    widthConstraint: { minimum: 140, maximum: 190 },
+                    color: { background: '#fff1f2', border: '#e11d48', highlight: { background: '#ffe4e6', border: '#e11d48' } }, 
+                    font: { color: '#9f1239', size: 12, face: 'JetBrains Mono', bold: true },
+                    borderWidth: 1,
+                    shadow: { enabled: false }
+                },
+                { 
+                    id: ring.cashout_dest, 
+                    label: `FINAL DESTINATION\n\n${ring.cashout_dest}`, 
+                    shape: 'box', 
+                    margin: 14,
+                    widthConstraint: { minimum: 150, maximum: 210 },
+                    color: { background: '#ffffff', border: '#e11d48', highlight: { background: '#fff1f2', border: '#e11d48' } }, 
+                    font: { color: '#881337', size: 13, face: 'JetBrains Mono', bold: true },
+                    borderWidth: 1.5,
+                    shadow: { enabled: true, color: 'rgba(225, 29, 72, 0.1)', size: 8 }
                 }
             ]);
 
-            // Sleek connecting arrows linking accounts through action badges
             const edges = new vis.DataSet([
-                { from: ring.victim, to: `tx_${idx}`, arrows: { to: { enabled: true, scaleFactor: 1.1 } }, color: '#0284c7', width: 2.5, length: 160 },
-                { from: `tx_${idx}`, to: ring.mule, arrows: { to: { enabled: true, scaleFactor: 1.2 } }, color: '#0284c7', width: 3, length: 160 },
-                { from: ring.mule, to: `co_${idx}`, arrows: { to: { enabled: true, scaleFactor: 1.1 } }, color: '#e11d48', width: 2.5, length: 160 },
-                { from: `co_${idx}`, to: ring.cashout_dest, arrows: { to: { enabled: true, scaleFactor: 1.2 } }, color: '#e11d48', width: 3, length: 160 }
+                { from: ring.victim, to: `tx_${idx}`, arrows: { to: { enabled: true, scaleFactor: 1 } }, color: '#0284c7', width: 2, length: 140 },
+                { from: `tx_${idx}`, to: ring.mule, arrows: { to: { enabled: true, scaleFactor: 1 } }, color: '#0284c7', width: 2, length: 140 },
+                { from: ring.mule, to: `co_${idx}`, arrows: { to: { enabled: true, scaleFactor: 1 } }, color: '#e11d48', width: 2, length: 140 },
+                { from: `co_${idx}`, to: ring.cashout_dest, arrows: { to: { enabled: true, scaleFactor: 1 } }, color: '#e11d48', width: 2, length: 140 }
             ]);
 
             const container = document.getElementById('network-graph');
@@ -705,7 +706,7 @@ select * from anomalies;</code></pre>
                     enabled: true,
                     stabilization: { iterations: 150 },
                     barnesHut: { 
-                        springLength: 160,
+                        springLength: 140,
                         centralGravity: 0.1,
                         springConstant: 0.04,
                         damping: 0.09,
@@ -717,8 +718,8 @@ select * from anomalies;</code></pre>
                         enabled: true,
                         direction: 'LR',
                         sortMethod: 'directed',
-                        levelSeparation: 220,
-                        nodeSpacing: 180
+                        levelSeparation: 200,
+                        nodeSpacing: 160
                     }
                 },
                 interaction: { hover: true, zoomView: true, dragNodes: true }
@@ -796,13 +797,13 @@ select * from anomalies;</code></pre>
                 document.getElementById('res-score').innerText = `${(data.risk_score * 100).toFixed(2)}%`;
                 const badge = document.getElementById('res-badge');
                 if (data.risk_level === "HIGH RISK (FLAGGED)" || data.risk_score >= data.decision_threshold) {
-                    badge.className = "px-3.5 py-1 rounded-xl text-sm font-bold bg-rose-100 text-rose-800 border border-rose-300 uppercase tracking-wider shadow-sm";
+                    badge.className = "px-3 py-1 rounded-md text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-200 uppercase tracking-wider";
                     badge.innerText = "HIGH RISK (FLAGGED)";
-                    document.getElementById('res-score').className = "text-4xl font-extrabold font-mono text-rose-600 tracking-tight";
+                    document.getElementById('res-score').className = "text-3xl font-bold font-mono text-rose-600 tracking-tight";
                 } else {
-                    badge.className = "px-3.5 py-1 rounded-xl text-sm font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase tracking-wider shadow-sm";
+                    badge.className = "px-3 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase tracking-wider";
                     badge.innerText = "LEGITIMATE (PASSED)";
-                    document.getElementById('res-score').className = "text-4xl font-extrabold font-mono text-emerald-700 tracking-tight";
+                    document.getElementById('res-score').className = "text-3xl font-bold font-mono text-emerald-700 tracking-tight";
                 }
                 document.getElementById('res-threshold').innerText = `Decision Threshold: ${data.decision_threshold}`;
 
@@ -810,7 +811,6 @@ select * from anomalies;</code></pre>
                 const container = document.getElementById('shap-bars');
                 container.innerHTML = '';
 
-                // Find max shap for relative bar widths
                 const maxShap = Math.max(...data.shap_contributions.map(c => Math.abs(c.impact)), 0.001);
 
                 data.shap_contributions.slice(0, 7).forEach(c => {
@@ -821,12 +821,12 @@ select * from anomalies;</code></pre>
                     const widthPct = Math.min((Math.abs(c.impact) / maxShap) * 100, 100).toFixed(0);
 
                     container.innerHTML += `
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <div class="flex justify-between items-center mb-1.5 font-bold">
-                                <span class="text-slate-800 font-sans text-xs">${c.feature} <span class="font-mono font-normal text-slate-500 ml-1">(val=${c.value})</span></span>
-                                <span class="${textColor} font-mono text-xs">${sign}${c.impact.toFixed(4)} SHAP</span>
+                        <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
+                            <div class="flex justify-between items-center mb-1 font-medium">
+                                <span class="text-slate-800 font-sans text-xs font-semibold">${c.feature} <span class="font-mono font-normal text-slate-500 ml-1">(val=${c.value})</span></span>
+                                <span class="${textColor} font-mono text-xs font-semibold">${sign}${c.impact.toFixed(4)} SHAP</span>
                             </div>
-                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                            <div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
                                 <div class="${barColor} h-full rounded-full transition-all duration-300" style="width: ${Math.max(widthPct, 4)}%"></div>
                             </div>
                         </div>
@@ -837,10 +837,10 @@ select * from anomalies;</code></pre>
                 const featContainer = document.getElementById('res-features');
                 const f = data.computed_features;
                 featContainer.innerHTML = `
-                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-xs"><span class="text-slate-400 block text-[10px] uppercase font-bold">Orig Error</span><strong class="text-slate-900 font-bold">${f.error_balance_orig}</strong></div>
-                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-xs"><span class="text-slate-400 block text-[10px] uppercase font-bold">Dest Error</span><strong class="text-slate-900 font-bold">${f.error_balance_dest}</strong></div>
-                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-xs"><span class="text-slate-400 block text-[10px] uppercase font-bold">Drained Flag</span><strong class="${f.flag_orig_drained ? 'text-rose-600 font-bold' : 'text-slate-900'}">${f.flag_orig_drained}</strong></div>
-                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-xs"><span class="text-slate-400 block text-[10px] uppercase font-bold">Amount Ratio</span><strong class="text-slate-900 font-bold">${f.amount_to_oldbalance_ratio}</strong></div>
+                    <div class="bg-white p-2.5 rounded-md border border-slate-200/80 shadow-2xs"><span class="text-slate-400 block text-[10px] uppercase font-semibold">Orig Error</span><strong class="text-slate-900 font-semibold">${f.error_balance_orig}</strong></div>
+                    <div class="bg-white p-2.5 rounded-md border border-slate-200/80 shadow-2xs"><span class="text-slate-400 block text-[10px] uppercase font-semibold">Dest Error</span><strong class="text-slate-900 font-semibold">${f.error_balance_dest}</strong></div>
+                    <div class="bg-white p-2.5 rounded-md border border-slate-200/80 shadow-2xs"><span class="text-slate-400 block text-[10px] uppercase font-semibold">Drained Flag</span><strong class="${f.flag_orig_drained ? 'text-rose-600 font-semibold' : 'text-slate-900 font-semibold'}">${f.flag_orig_drained}</strong></div>
+                    <div class="bg-white p-2.5 rounded-md border border-slate-200/80 shadow-2xs"><span class="text-slate-400 block text-[10px] uppercase font-semibold">Amount Ratio</span><strong class="text-slate-900 font-semibold">${f.amount_to_oldbalance_ratio}</strong></div>
                 `;
 
             } catch (err) {
@@ -848,7 +848,6 @@ select * from anomalies;</code></pre>
             }
         }
 
-        // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
             loadAnalytics();
             loadGraphData();
