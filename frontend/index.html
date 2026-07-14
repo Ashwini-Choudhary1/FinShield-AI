@@ -770,13 +770,13 @@ select * from anomalies;</code></pre>
                 step: 10,
                 transaction_type: document.getElementById('sim-type').value,
                 amount: parseFloat(document.getElementById('sim-amount').value),
-                oldbalanceOrg: parseFloat(document.getElementById('sim-oldbalance-orig').value),
-                newbalanceOrig: parseFloat(document.getElementById('sim-newbalance-orig').value),
-                oldbalanceDest: parseFloat(document.getElementById('sim-oldbalance-dest').value),
-                newbalanceDest: parseFloat(document.getElementById('sim-newbalance-dest').value),
+                old_balance_orig: parseFloat(document.getElementById('sim-oldbalance-orig').value),
+                new_balance_orig: parseFloat(document.getElementById('sim-newbalance-orig').value),
+                old_balance_dest: parseFloat(document.getElementById('sim-oldbalance-dest').value),
+                new_balance_dest: parseFloat(document.getElementById('sim-newbalance-dest').value),
                 tx_velocity_1h: parseInt(document.getElementById('sim-velocity').value),
-                is_ring_victim: parseInt(document.getElementById('sim-victim').value),
-                is_ring_mule: parseInt(document.getElementById('sim-mule').value)
+                is_mule_victim: parseInt(document.getElementById('sim-victim').value),
+                is_mule_hop_receiver: parseInt(document.getElementById('sim-mule').value)
             };
 
             try {
@@ -786,11 +786,16 @@ select * from anomalies;</code></pre>
                     body: JSON.stringify(req)
                 });
                 const data = await res.json();
+                
+                if (!res.ok) {
+                    console.error("Simulation error response:", data);
+                    return;
+                }
 
                 // Update Prediction Banner
                 document.getElementById('res-score').innerText = `${(data.risk_score * 100).toFixed(2)}%`;
                 const badge = document.getElementById('res-badge');
-                if (data.is_flagged_fraud) {
+                if (data.risk_level === "HIGH RISK (FLAGGED)" || data.risk_score >= data.decision_threshold) {
                     badge.className = "px-3.5 py-1 rounded-xl text-sm font-bold bg-rose-100 text-rose-800 border border-rose-300 uppercase tracking-wider shadow-sm";
                     badge.innerText = "HIGH RISK (FLAGGED)";
                     document.getElementById('res-score').className = "text-4xl font-extrabold font-mono text-rose-600 tracking-tight";
@@ -806,20 +811,20 @@ select * from anomalies;</code></pre>
                 container.innerHTML = '';
 
                 // Find max shap for relative bar widths
-                const maxShap = Math.max(...data.shap_contributions.map(c => Math.abs(c.shap_value)), 0.001);
+                const maxShap = Math.max(...data.shap_contributions.map(c => Math.abs(c.impact)), 0.001);
 
                 data.shap_contributions.slice(0, 7).forEach(c => {
-                    const isPositive = c.shap_value >= 0;
+                    const isPositive = c.impact >= 0;
                     const barColor = isPositive ? 'bg-rose-600' : 'bg-blue-600';
                     const textColor = isPositive ? 'text-rose-600' : 'text-blue-600';
                     const sign = isPositive ? '+' : '';
-                    const widthPct = Math.min((Math.abs(c.shap_value) / maxShap) * 100, 100).toFixed(0);
+                    const widthPct = Math.min((Math.abs(c.impact) / maxShap) * 100, 100).toFixed(0);
 
                     container.innerHTML += `
                         <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
                             <div class="flex justify-between items-center mb-1.5 font-bold">
-                                <span class="text-slate-800 font-sans text-xs">${c.feature_name} <span class="font-mono font-normal text-slate-500 ml-1">(val=${c.feature_value})</span></span>
-                                <span class="${textColor} font-mono text-xs">${sign}${c.shap_value.toFixed(4)} SHAP</span>
+                                <span class="text-slate-800 font-sans text-xs">${c.feature} <span class="font-mono font-normal text-slate-500 ml-1">(val=${c.value})</span></span>
+                                <span class="${textColor} font-mono text-xs">${sign}${c.impact.toFixed(4)} SHAP</span>
                             </div>
                             <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                                 <div class="${barColor} h-full rounded-full transition-all duration-300" style="width: ${Math.max(widthPct, 4)}%"></div>
