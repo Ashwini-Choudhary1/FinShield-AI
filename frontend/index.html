@@ -40,12 +40,9 @@
                 </div>
             </div>
             <div class="flex items-center gap-2.5">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-50/80 text-emerald-700 border border-emerald-200/60">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-50/80 text-emerald-700 border border-emerald-200/60 shadow-2xs">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     DuckDB & dbt Engine Active
-                </span>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium bg-slate-900 text-slate-100 shadow-xs">
-                    ROC-AUC: 1.000 | PR-AUC: 1.000
                 </span>
             </div>
         </div>
@@ -105,40 +102,64 @@
                 </div>
             </div>
 
-            <!-- Charts Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Main Trend Chart -->
-                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs lg:col-span-2 flex flex-col">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-slate-100">
-                        <div>
-                            <h3 class="text-sm font-semibold text-slate-900 tracking-tight">
-                                Transaction Volume & Fraud Incidence Velocity (`step`)
-                            </h3>
-                            <p class="text-xs text-slate-500 mt-0.5 font-normal">Aggregated via dbt dimensional mart <code class="bg-slate-100 text-slate-700 font-mono px-1.5 py-0.5 rounded border border-slate-200/60">fct_fraud_kpis</code></p>
-                        </div>
-                        <span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/60">
-                            DuckDB Analytical Query
-                        </span>
+            <!-- Interactive Analytical Controls Bench -->
+            <div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-2 text-xs font-medium text-slate-700">
+                    <span class="text-slate-400 font-semibold uppercase tracking-wider text-[11px]">Interactive Slicers:</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="applyTimeSlice('all')" id="slice-all" class="px-3 py-1.5 rounded-md bg-slate-900 text-white font-medium transition shadow-2xs text-xs">All 30 Days (Full)</button>
+                        <button onclick="applyTimeSlice('week1')" id="slice-week1" class="px-3 py-1.5 rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 font-medium transition text-xs">First 7 Days</button>
+                        <button onclick="applyTimeSlice('top15')" id="slice-top15" class="px-3 py-1.5 rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 font-medium transition text-xs">Top 15 Fraud Spikes</button>
                     </div>
-                    <div class="relative flex-1 min-h-[360px] w-full">
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 font-normal">
+                    <span>Active Metric Focus:</span>
+                    <span id="active-slice-label" class="font-mono font-semibold text-blue-600 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded">All 743 Steps Evaluated</span>
+                </div>
+            </div>
+
+            <!-- Dual Sliced Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Interactive Trend Chart -->
+                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs flex flex-col">
+                    <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
+                        <div>
+                            <h3 class="text-sm font-semibold text-slate-900 tracking-tight">Step-by-Step Volume & Fraud Rate</h3>
+                            <p class="text-xs text-slate-500 mt-0.5 font-normal">Slicable transaction timeline across hours (`step`)</p>
+                        </div>
+                        <span class="text-xs font-mono font-medium text-slate-600 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/60">DuckDB Aggregation</span>
+                    </div>
+                    <div class="relative flex-1 min-h-[300px] w-full">
                         <canvas id="trendChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Transaction Type Breakdown -->
-                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 mb-1 tracking-tight">Channel Activity Distribution</h3>
-                        <p class="text-xs text-slate-500 mb-6 pb-3 border-b border-slate-100 font-normal">Breakdown of total transaction volume & fraud</p>
-                        <div id="type-breakdown-list" class="space-y-4">
-                            <!-- Populated via JS -->
+                <!-- 24-Hour Time-of-Day Profile -->
+                <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs flex flex-col">
+                    <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
+                        <div>
+                            <h3 class="text-sm font-semibold text-slate-900 tracking-tight">24-Hour Time-of-Day Risk Profile</h3>
+                            <p class="text-xs text-slate-500 mt-0.5 font-normal">Distribution across 24-hour cycle (`step % 24`)</p>
                         </div>
+                        <span class="text-xs font-mono font-medium text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200/60">Behavioral Pattern</span>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-slate-100 bg-slate-50 rounded-lg p-3.5 border border-slate-200/60">
-                        <p class="text-xs text-slate-600 font-normal leading-relaxed">
-                            <span class="font-semibold text-slate-900">Analytics Engineering Note:</span> Across this dataset, 100% of confirmed fraud cases occur specifically within the <code class="bg-white text-slate-800 px-1 py-0.5 rounded font-mono font-medium border border-slate-200">TRANSFER</code> and <code class="bg-white text-slate-800 px-1 py-0.5 rounded font-mono font-medium border border-slate-200">CASH_OUT</code> channels.
-                        </p>
+                    <div class="relative flex-1 min-h-[300px] w-full">
+                        <canvas id="hourlyProfileChart"></canvas>
                     </div>
+                </div>
+            </div>
+
+            <!-- Channel Distribution & Key Takeaways -->
+            <div class="bg-white border border-slate-200/80 rounded-xl p-6 shadow-xs">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6 pb-3 border-b border-slate-100">
+                    <div>
+                        <h3 class="text-sm font-semibold text-slate-900 tracking-tight">Channel Activity Breakdown</h3>
+                        <p class="text-xs text-slate-500 font-normal">Proportion of total activity and fraud cases by payment method</p>
+                    </div>
+                    <span class="text-xs font-medium text-slate-600 bg-slate-50 px-3 py-1 rounded-md border border-slate-200/60">100% Fraud Isolation in TRANSFER & CASH_OUT</span>
+                </div>
+                <div id="type-breakdown-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <!-- Populated via JS -->
                 </div>
             </div>
 
@@ -440,8 +461,10 @@ select * from anomalies;</code></pre>
     <!-- JavaScript Logic -->
     <script>
         let trendChartInstance = null;
+        let hourlyProfileChartInstance = null;
         let networkInstance = null;
         let graphMetadata = null;
+        let rawHourlyData = [];
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
@@ -481,7 +504,8 @@ select * from anomalies;</code></pre>
 
                 const trendRes = await fetch('/api/analytics/hourly-trend');
                 const trendData = await trendRes.json();
-                renderTrendChart(trendData);
+                rawHourlyData = trendData;
+                applyTimeSlice('all');
 
                 const typeRes = await fetch('/api/analytics/type-breakdown');
                 const typeData = await typeRes.json();
@@ -491,11 +515,35 @@ select * from anomalies;</code></pre>
             }
         }
 
+        function applyTimeSlice(mode) {
+            if (!rawHourlyData || rawHourlyData.length === 0) return;
+
+            document.querySelectorAll('[id^="slice-"]').forEach(btn => {
+                btn.className = "px-3 py-1.5 rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 font-medium transition text-xs";
+            });
+            const activeBtn = document.getElementById(`slice-${mode}`);
+            if (activeBtn) activeBtn.className = "px-3 py-1.5 rounded-md bg-slate-900 text-white font-medium transition shadow-2xs text-xs";
+
+            let slicedData = rawHourlyData;
+            let labelText = "All 743 Steps Evaluated";
+
+            if (mode === 'week1') {
+                slicedData = rawHourlyData.filter(d => d.step <= 168);
+                labelText = "First 168 Hours (Week 1 Focus)";
+            } else if (mode === 'top15') {
+                slicedData = [...rawHourlyData].sort((a, b) => b.fraud_rate_pct - a.fraud_rate_pct).slice(0, 15).sort((a, b) => a.step - b.step);
+                labelText = "Top 15 Highest Fraud Incidence Spikes";
+            }
+
+            document.getElementById('active-slice-label').innerText = labelText;
+            renderTrendChart(slicedData);
+            renderHourlyProfileChart(slicedData);
+        }
+
         function renderTrendChart(data) {
             const ctx = document.getElementById('trendChart').getContext('2d');
             if (trendChartInstance) trendChartInstance.destroy();
 
-            // Aggregate steps into cleaner intervals or downsample if too dense so chart looks executive and smooth
             const steps = data.map(d => `Step ${d.step}`);
             const volumes = data.map(d => d.total_tx);
             const fraudRates = data.map(d => d.fraud_rate_pct);
@@ -535,7 +583,7 @@ select * from anomalies;</code></pre>
                     scales: {
                         x: { 
                             grid: { display: false }, 
-                            ticks: { color: '#64748b', font: { size: 11, family: 'Inter', weight: '500' }, maxTicksLimit: 16, padding: 6 } 
+                            ticks: { color: '#64748b', font: { size: 11, family: 'Inter', weight: '500' }, maxTicksLimit: 12, padding: 6 } 
                         },
                         y: { 
                             grid: { color: 'rgba(0, 0, 0, 0.04)' }, 
@@ -551,7 +599,88 @@ select * from anomalies;</code></pre>
                     },
                     plugins: {
                         legend: { 
-                            labels: { color: '#334155', font: { size: 12, family: 'Inter', weight: '500' }, padding: 16, usePointStyle: true, boxWidth: 8 } 
+                            labels: { color: '#334155', font: { size: 12, family: 'Inter', weight: '500' }, padding: 12, usePointStyle: true, boxWidth: 8 } 
+                        },
+                        tooltip: {
+                            backgroundColor: '#0f172a',
+                            titleFont: { size: 12, family: 'Inter', weight: '600' },
+                            bodyFont: { size: 11, family: 'JetBrains Mono' },
+                            borderColor: 'rgba(255, 255, 255, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            cornerRadius: 6
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderHourlyProfileChart(data) {
+            const ctx = document.getElementById('hourlyProfileChart').getContext('2d');
+            if (hourlyProfileChartInstance) hourlyProfileChartInstance.destroy();
+
+            // Aggregate by hour of day (step % 24)
+            const hourlyBuckets = Array(24).fill(0).map(() => ({ total_tx: 0, fraud_tx: 0 }));
+            data.forEach(d => {
+                const hour = d.step % 24;
+                hourlyBuckets[hour].total_tx += d.total_tx;
+                hourlyBuckets[hour].fraud_tx += d.fraud_tx;
+            });
+
+            const hours = hourlyBuckets.map((_, i) => `${i.toString().padStart(2, '0')}:00`);
+            const rates = hourlyBuckets.map(b => b.total_tx > 0 ? ((b.fraud_tx / b.total_tx) * 100).toFixed(2) : 0);
+            const fraudCounts = hourlyBuckets.map(b => b.fraud_tx);
+
+            hourlyProfileChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: hours,
+                    datasets: [
+                        {
+                            label: 'Fraud Volume (Cases)',
+                            data: fraudCounts,
+                            backgroundColor: 'rgba(147, 51, 234, 0.85)',
+                            borderColor: '#7e22ce',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Average Fraud Rate (%)',
+                            data: rates,
+                            type: 'line',
+                            borderColor: '#e11d48',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 2,
+                            pointHoverRadius: 5,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            grid: { display: false }, 
+                            ticks: { color: '#64748b', font: { size: 11, family: 'JetBrains Mono', weight: '500' }, maxTicksLimit: 12, padding: 6 } 
+                        },
+                        y: { 
+                            grid: { color: 'rgba(0, 0, 0, 0.04)' }, 
+                            ticks: { color: '#64748b', font: { size: 11, family: 'JetBrains Mono', weight: '500' }, padding: 8 } 
+                        },
+                        y1: { 
+                            position: 'right', 
+                            grid: { drawOnChartArea: false }, 
+                            ticks: { color: '#e11d48', font: { size: 11, family: 'JetBrains Mono', weight: '600' }, padding: 8, callback: val => val + '%' },
+                            min: 0
+                        }
+                    },
+                    plugins: {
+                        legend: { 
+                            labels: { color: '#334155', font: { size: 12, family: 'Inter', weight: '500' }, padding: 12, usePointStyle: true, boxWidth: 8 } 
                         },
                         tooltip: {
                             backgroundColor: '#0f172a',
